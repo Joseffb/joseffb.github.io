@@ -162,7 +162,7 @@
                 if( viewport.is("xs") ) {
                     $("#wrapper").toggleClass("toggled");
                     $("#menu-toggle").show();
-                    window.scrollTo(0, 0);
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
                 }
 
 
