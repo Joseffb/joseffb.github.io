@@ -228,7 +228,6 @@
                     jQuery.getJSON('site_data.json', function(data) {
                         number = generateRandom(0,data.quotes.length-1);
                         quote = data.quotes[number[0]];
-                        console.log(quote.quote);
                         $('.smart-alec-phrase').html(quote.quote);
                     });
                 });
