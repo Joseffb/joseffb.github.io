@@ -228,6 +228,7 @@
                         number = generateRandom(0,data.quotes.length-1);
                         quote = data.quotes[number[0]];
                         $('.smart-alec-phrase').html(quote.quote);
+                        document.title = quote.quote;
                     });
                 });
                 if( viewport.is("xs") ) {
