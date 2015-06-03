@@ -18,6 +18,10 @@
     padding-left: 250px;
 }
 
+.my-title {
+    line-height: 0.8;
+}
+
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
