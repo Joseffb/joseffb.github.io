@@ -22,7 +22,22 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
 
+        t._e = [];
+        t.ready = function(f) {
+            t._e.push(f);
+        };
+
+        return t;
+    }(document, "script", "twitter-wjs"));</script>
 </head>
 
 <body>
@@ -78,6 +93,7 @@
             <div class="hidden-xs">
             <ul class="sidebar-nav">
                 <li class="" style="color:white; line-height: 15px;margin-top:10px;">
+
                     <a href="#" class="internal-menu-toggle pull-right" style="margin-right:5px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
                     <div style="text-align: center;padding: 0 12% 0 3%;">
                         <img style=" margin-left:30px;border:thick white solid;height:130px;" src ="./assets/jb_400x400.jpg"/>
@@ -109,6 +125,42 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
+            <style>
+                blockquote {
+                    border-left: 10px solid #000;
+                    padding: 0.5em 10px;
+                    quotes: "\201C""\201D""\2018""\2019";
+                    position: absolute; top: 0; left:0;
+                    color:#000;
+                    font-style: italic;
+                }
+                blockquote a {
+                    text-decoration: underline;
+                    color:#000
+                }
+                blockquote:before {
+                    color: #000;
+                    content: open-quote;
+                    font-size: 2em;
+                    line-height: 0.1em;
+                    margin-right: 0.25em;
+                    vertical-align: -0.4em;
+                }
+
+                blockquote:after {
+                    color: #000;
+                    content: close-quote;
+                    font-size: 2em;
+                    line-height: 0.1em;
+                    margin-left: 0.25em;
+                    vertical-align: -0.4em;
+                }
+                blockquote p {
+                    display: inline;
+                    font-size: 12px;
+                }
+            </style>
+            <blockquote><p class="smart-alec-phrase">Test</p></blockquote>
             <a style="color:#080808; text-decoration: none;" href="#"><button  id="menu-toggle" class="btn btn-primary pull-right" style="z-index:9999; position:fixed; right:2%; top:2%;">Menu</button></a>
             <div class="container-fluid" id="destination">
 
@@ -134,8 +186,6 @@
 
         (function($, document, window, viewport){
 
-
-
             var setup_mobileMenu = function() {
                 $('.comparison-operator').removeClass('active');
                 if( viewport.is("<=sm") ) {
@@ -146,9 +196,25 @@
                     $("#wrapper").show();
                 }
             };
+
+            function generateRandom(min, max) {
+                var arr = [];
+                while(arr.length < 5){
+                    var randNum = Math.floor(Math.random() * (max - min + 1)) + min,
+                            found=false;
+                    for(var i=0;i < arr.length; i++){
+                        if(arr[i] == randNum){found=true;break}
+                    }
+                    if(!found)arr[arr.length] = randNum;
+                }
+                return arr;
+            }
+
             var loadSection = function() {
                 var url = window.location.hash.substring(1);
                 var name = '';
+                var numer = null;
+                var quote = null;
                 switch( url ) {
                     case 'about':
                     case 'socialnetworks':
@@ -158,21 +224,28 @@
                         name = "home.html";
                         break;
                 }
-                $( "#destination" ).load( name, function() { });
+                $( "#destination" ).load( name, function() {
+                    jQuery.getJSON('site_data.json', function(data) {
+                        number = generateRandom(0,data.quotes.length-1);
+                        quote = data.quotes[number[0]];
+                        console.log(quote.quote);
+                        $('.smart-alec-phrase').html(quote.quote);
+                    });
+                });
                 if( viewport.is("xs") ) {
                     $("#wrapper").toggleClass("toggled");
                     $("#menu-toggle").show();
                     document.body.scrollTop = document.documentElement.scrollTop = 0;
                 }
 
-
-
-
-
             };
+
+
+
             // Executes once whole document has been loaded
             $(document).ready(function() {
                 loadSection();
+
                 setup_mobileMenu();
                 $(window).on('hashchange',function(){
                     loadSection();
