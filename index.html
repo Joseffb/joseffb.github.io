@@ -40,6 +40,42 @@
     }(document, "script", "twitter-wjs"));</script>
     
     <style>
+        blockquote {
+                    padding: 0.5em 10px;
+                    quotes: "\201C""\201D""\2018""\2019";
+                    position: absolute; top: 0; left:0;
+                    color:#000;
+                    font-style: italic;
+                }
+                blockquote a {
+                    text-decoration: underline;
+                    color:#000
+                }
+                blockquote:before {
+                    color: #000;
+                    content: open-quote;
+                    font-size: 2em;
+                    line-height: 0.1em;
+                    margin-right: 0.25em;
+                    vertical-align: -0.4em;
+                }
+
+                blockquote:after {
+                    color: #000;
+                    content: close-quote;
+                    font-size: 2em;
+                    line-height: 0.1em;
+                    margin-left: 0.25em;
+                    vertical-align: -0.4em;
+                }
+                blockquote p {
+                    display: inline;
+                    font-size: 12px;
+                }
+        
+                .menuBtn {
+                z-index: 9999; position: fixed; right: 2%; top: 2%; display: block;
+                }
         #page-content-wrapper {
             background: #eee;
             background-image: url(assets/home-bg.jpg); /* fallback */
@@ -64,6 +100,16 @@
             -moz-column-count: 2; /* Firefox */
             column-count: 2;
         }
+        
+        @media print {
+            .no-print {
+            display:none;
+            }
+            
+            #wrapper {
+            padding-left:0 !important;
+            }
+        }
     </style>
 </head>
 
@@ -72,7 +118,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" class="no-print">
 
             <div class="visible-xs">
                 <div class="row">
@@ -88,7 +134,7 @@
                             <noscript>Please enable Javascript to see the email address</noscript></span>
                                 </div>
                             </li>
-                            <li><
+                            <li>
                                 <div class="row" style="color:#080808">
                                     <div class="col-xs-12">
                                         <div class="row">
@@ -151,41 +197,12 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <style>
-                blockquote {
-                    padding: 0.5em 10px;
-                    quotes: "\201C""\201D""\2018""\2019";
-                    position: absolute; top: 0; left:0;
-                    color:#000;
-                    font-style: italic;
-                }
-                blockquote a {
-                    text-decoration: underline;
-                    color:#000
-                }
-                blockquote:before {
-                    color: #000;
-                    content: open-quote;
-                    font-size: 2em;
-                    line-height: 0.1em;
-                    margin-right: 0.25em;
-                    vertical-align: -0.4em;
-                }
-
-                blockquote:after {
-                    color: #000;
-                    content: close-quote;
-                    font-size: 2em;
-                    line-height: 0.1em;
-                    margin-left: 0.25em;
-                    vertical-align: -0.4em;
-                }
-                blockquote p {
-                    display: inline;
-                    font-size: 12px;
-                }
+                
             </style>
-            <blockquote><p class="smart-alec-phrase"><i>Loading a random witty quote...</i></p></blockquote>
-            <a style="color:#080808; text-decoration: none;" href="#"><button  id="menu-toggle" class="btn btn-primary pull-right" style="z-index:9999; position:fixed; right:2%; top:2%;">Menu</button></a>
+            <blockquote class="no-print"><p class="smart-alec-phrase"><i>Loading a random witty quote...</i></p></blockquote>
+            <a style="color:#080808; text-decoration: none;" href="#">
+                <button  id="menu-toggle" class="btn btn-primary pull-right no-print menuBtn">Menu</button>
+            </a>
             <div class="container-fluid" id="destination">
 
             </div>
