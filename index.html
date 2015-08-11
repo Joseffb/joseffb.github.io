@@ -41,23 +41,33 @@
     
     <style>
         #page-content-wrapper {
-            background: #6cab26;
+            background: #eee;
             background-image: url(assets/home-bg.jpg); /* fallback */
-            background-image: url(assets/home-bg.jpg), -webkit-gradient(linear, left top, left bottom, from(#6cab26), to(#6ceb86)); /* Saf4+, Chrome */
-            background-image: url(assets/home-bg.jpg), -webkit-linear-gradient(top, #6cab26, #6ceb86); /* Chrome 10+, Saf5.1+ */
-            background-image: url(assets/home-bg.jpg),    -moz-linear-gradient(top, #6cab26, #6ceb86); /* FF3.6+ */
-            background-image: url(assets/home-bg.jpg),      -o-linear-gradient(top, #6cab26, #6ceb86); /* Opera 11.10+ */
-            background-image: url(assets/home-bg.jpg),         linear-gradient(to bottom, #6cab26, #6ceb86); /* W3C */
+            background-image: url(assets/home-bg.jpg), -webkit-gradient(linear, left top, left bottom, from(#eee), to(#000)); /* Saf4+, Chrome */
+            background-image: url(assets/home-bg.jpg), -webkit-linear-gradient(top, #eee, #000, 100%); /* Chrome 10+, Saf5.1+ */
+            background-image: url(assets/home-bg.jpg),    -moz-linear-gradient(top, #eee, #000, 100%); /* FF3.6+ */
+            background-image: url(assets/home-bg.jpg),      -o-linear-gradient(top, #eee, #000, 100%); /* Opera 11.10+ */
+            background-image: url(assets/home-bg.jpg),         linear-gradient(to bottom, #eee, #000,100% ); /* W3C */
+            background-repeat: no-repeat ;
             min-height:880px;
         }
-        
         .readIt{
             background-color: white;
+            opacity: 0.80;
+            filter: alpha(opacity=80); /* For IE8 and earlier */
+            border-radius:10px;
+  
+        }
+        
+        .biog {
+            -webkit-column-count: 2; /* Chrome, Safari, Opera */
+            -moz-column-count: 2; /* Firefox */
+            column-count: 2;
         }
     </style>
 </head>
 
-<body>
+<body style="background-color: #000;">
 
     <div id="wrapper">
 
@@ -85,8 +95,8 @@
                                             <button style="background-color:grey; height: 50px; margin-bottom:5px; border-radius: 0; -webkit-appearance: none; -webkit-border-radius: 0;" class="col-xs-12"><a style="color:#080808" href="index.html#home" class="menu-item" id="home">Home</a></button>
                                         </div>
                                         <div class="row">
-                                            <button style="background-color:grey; height: 50px; margin-bottom:5px; border-radius: 0; -webkit-appearance: none; -webkit-border-radius: 0;" class="col-xs-6" ><a style="color:#080808"  href="#about" class="menu-item" id="about" data-page="about">About Me</a></button>
-                                            <button style="background-color:grey; height: 50px; margin-bottom:5px; border-radius: 0; -webkit-appearance: none; -webkit-border-radius: 0;" class="col-xs-6"><a style="color:#080808"   href="#socialnetworks" class="menu-item" id="socialnetworks" data-page="socialnetworks"><div style="line-height: 1"><span style="font-size:11px;">Philosophy on</span><br/><span >Social Networks</span></div></a></button>
+                                            <button style="background-color:grey; height: 50px; margin-bottom:5px; border-radius: 0; -webkit-appearance: none; -webkit-border-radius: 0;" class="col-xs-12" ><a style="color:#080808"  href="#about" class="menu-item" id="about" data-page="about">About Me</a></button>
+                          
                                         </div>
                                         <div class="row">
                                             <button style="background-color:grey; height: 50px; margin-bottom:5px; border-radius: 0; -webkit-appearance: none; -webkit-border-radius: 0;" class="col-xs-6"><a style="color:#080808"  target="_blank" href="https://twitter.com/Joseffb" class="menu-item" id="tw" data-page="twitter"><div style="line-height: 1"><span style="font-size:11px;">Tweets on</span><br/><span >Twitter </span><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></div></a>
@@ -133,9 +143,7 @@
                 <li style="margin-bottom: 10px;">
                     <a target="_blank" href="https://github.com/Joseffb" class="menu-item" id="github" data-page="github"><div style="line-height: 1"><span style="font-size:11px;">Code on</span><br/><span style="padding-left:20px;">Github</span><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></div></a>
                 </li>
-                <li>
-                    <a  href="#socialnetworks" class="menu-item" id="socialnetworks" data-page="socialnetworks"><div style="line-height: 1"><span style="font-size:11px;">Philosophy on</span><br/><span style="padding-left:20px;">Social Networks</span></div></a>
-                </li>
+      
             </ul></div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -183,7 +191,7 @@
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-        <div class="hidden-xs" style="position: static; bottom:0; right:1%; float:right;">
+        <div class="hidden-xs" style="background-color: #000;position: static; bottom:0; right:1%; float:right;">
             <a href="https://twitter.com/JoseffB" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @JoseffB</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
@@ -233,7 +241,6 @@
                 var quote = null;
                 switch( url ) {
                     case 'about':
-                    case 'socialnetworks':
                         name = url+".html";
                         break;
                     default:
